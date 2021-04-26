@@ -23,6 +23,7 @@ func (env Environment) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if err := env.DB.Ping(ctx); err != nil {
 		log.Printf("FAIL: %v", err)
 		fmt.Fprint(w, "FAIL")
+		fmt.Fprintf(w, "DATABASE_URL=%q", os.Getenv("DATABASE_URL"))
 	} else {
 		fmt.Fprint(w, "OK")
 	}
