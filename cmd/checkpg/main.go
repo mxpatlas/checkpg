@@ -34,12 +34,18 @@ func main() {
 
 	listenAddress := fmt.Sprintf("0.0.0.0:%s", os.Getenv("PORT"))
 
-	db := pg.Connect(&pg.Options{
-		User:     os.Getenv("POSTGRES_USER"),
-		Password: os.Getenv("POSTGRES_PASSWORD"),
-		Database: os.Getenv("POSTGRES_DB"),
-		Addr:     os.Getenv("POSTGRES_ADDR"),
-	})
+	connectOpts, err := pg.ParseURL(os.Getenv("DATABASE_URL"))
+	if err != nil {
+		log.Printf("invalid DATABASE_URL, use POSTGRES_* variables: %v", err)
+		connectOpts = &pg.Options{
+			User:     os.Getenv("POSTGRES_USER"),
+			Password: os.Getenv("POSTGRES_PASSWORD"),
+			Database: os.Getenv("POSTGRES_DB"),
+			Addr:     os.Getenv("POSTGRES_ADDR"),
+		}
+	}
+
+	db := pg.Connect(connectOpts)
 	defer db.Close()
 
 	env := &Environment{
