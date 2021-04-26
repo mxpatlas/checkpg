@@ -1,4 +1,5 @@
 .vagrant
+buildroot/
 
 # Vim
 *.swp
