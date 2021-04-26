@@ -1,3 +1,6 @@
+LINT_ARGS=
+
+
 all: build
 
 .PHONY: build
@@ -9,4 +12,4 @@ test:
 	go test -mod vendor ./...
 
 lint:
-
+	golangci-lint -c .golangci.yml $(LINT_ARGS) run
