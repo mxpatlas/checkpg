@@ -31,7 +31,7 @@ func (env Environment) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
 
-	listenAddress := "0.0.0.0:7654"
+	listenAddress := fmt.Sprintf("0.0.0.0:%s", os.Getenv("PORT"))
 
 	db := pg.Connect(&pg.Options{
 		User:     os.Getenv("POSTGRES_USER"),
