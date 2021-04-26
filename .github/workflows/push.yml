@@ -1,0 +1,11 @@
+name: push handler
+on: [push]
+jobs:
+  build:
+    runs-on: golang:1.16.3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build code
+        run: make build
+        env: BUILDROOT=/tmp/build_checkpg
