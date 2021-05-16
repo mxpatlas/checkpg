@@ -35,5 +35,6 @@ jobs:
       - name: Run GolangCI-Lint
         uses: golangci/golangci-lint-action@v2
         with:
-          config: .golangci.yml
+          args:
+            config: .golangci.yml
 
