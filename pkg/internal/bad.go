@@ -7,7 +7,7 @@ import (
 
 const stringEmpty = ""
 
-func startWith(in, test string) bool {
+func StartWith(in, test string) bool {
 	if len(test) > len(in) {
 		return false
 	}
@@ -37,7 +37,7 @@ func Line(in string) (string, string) {
 	return in[1:i], in[i+1:]
 }
 
-func extractFlightLevel(in string) int {
+func ExtractFlightLevel(in string) int {
 	fl, _ := strconv.Atoi(in[1:])
 	return fl
 }
