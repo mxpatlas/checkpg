@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+const stringEmpty = ""
+
 func startWith(in, test string) bool {
 	if len(test) > len(in) {
 		return false
